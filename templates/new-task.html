@@ -1,70 +1,28 @@
-{% extends "layout.html" %}
-{% block content %}
-    <form action="" method=post>
-    {% if todo is defined %}
-        <h2>Edit TODO</h2>
-    {% else %}
-        <h2>Create new TODO</h2>
-    {% endif %}
-
-        <div class="control-group">
-
-
-            <div class="control-group" >
-                <div class="controls">
-                    <select class="selectpicker" name="category" required>
-                        {% for category in categories %}
-                            {% if todo is defined %}
-                            <option value="{{ category.id }}" {% if todo.category_id == category.id %} selected {% endif %}>{{ category.name }}</option>
-                            {% else %}
-                            <option value="{{ category.id }}">{{ category.name }}</option>
-                            {% endif %}
-                        {% endfor %}
-
-                    </select>
+{% extends "form-base.html" %}
+        {% block form_content %}
+                <fieldset>
+                    <legend>{%- if todo is defined %} Edit {% else %} Create new {% endif -%}Todo</legend>
+                        <div class=row>
+                            <div class="form-group col-md-6">
+                                {{ form.category(class_='form-control selectpicker') }}
+                            </div>
+                            <div class="form-group col-md-6">     
+                                {{ form.priority(class_='selectpicker form-control') }}
+                            </div>
+                        </div>
+                </fieldset> 
+                <fieldset>       
+                    <div class="form-group">              
+                        {{ form.description(class_='form-control',placeholder='Add Description') }}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <button id="submit" type="submit" class="btn btn-success">
+                        {% if todo %}
+                            Save
+                        {% else %}
+                            Create Todo
+                        {% endif %}
+                    </button>
                 </div>
-            </div>
-            <hr>
-            <div class="control-group">
-                <div class="controls">
-                    <select class="selectpicker" name="priority" required>
-                        {% for priority in priorities %}
-                            {% if todo is defined %}
-                                <option value="{{ priority.id }}" {% if todo.priority_id == priority.id %} selected {% endif %}>{{ priority.name }}</option>
-                            {% else %}
-                                <option value="{{ priority.id }}">{{ priority.name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <hr>
-            <div class="control-group">
-                <div class="controls">
-                    {% if todo is defined %}
-                    <input type="text" id="description" name="description" maxlength="60" class="input-xlarge"
-                           placeholder="Describe TODO" value="{{ todo.description }}"
-                           required>
-                    {% else %}
-                     <input type="text" id="description" name="description" maxlength="60" class="input-xlarge"
-                           placeholder="Describe TODO"
-                           required>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn btn-success">
-                    {% if todo %}
-                        Save
-                    {% else %}
-                        Create Todo
-                    {% endif %}
-                </button>
-            </div>
-        </div>
-
-    </form>
-{% endblock %}
+        {% endblock %}

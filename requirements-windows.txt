@@ -6,9 +6,8 @@ SQLAlchemy==0.9.9
 Werkzeug==0.10.4
 argparse==1.2.1
 gunicorn==19.3.0
+ipython==3.1.0
 itsdangerous==0.24
-psycopg2==2.6
+#psycopg2==2.6
+git+https://github.com/nwcell/psycopg2-windows.git@win32-py25#egg=psycopg2
 wsgiref==0.1.2
-flask-script
-ipython==4.0.0
-wtforms==2.0.1

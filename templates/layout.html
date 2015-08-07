@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/static/css/bootstrap-select.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="/static/js/jquery-2.1.3.js"></script>
     <script src="/static/js/bootstrap.js"></script>
     <script src="/static/js/bootstrap-select.js"></script>
@@ -15,41 +16,29 @@
         $(document).ready(function () {
             $('.selectpicker').selectpicker();
         })
-    </script>
-    <style type="text/css">
-
-        #rounded {
-            border: 2px solid #7087a1;
-            padding: 10px 20px;
-            background: #d8dcee;
-            border-radius: 10px;
-            width: 350px;
-        }
-
-         #category-table {
-            width: 300px;
-             border: 0px;
-         }
-
-         #category-table tbody tr > td.success {
-             background-color: #8cbfee !important;
-        }
-
-        #todo-table {
-            width: 1000px;
-        }
-        #todo-table tbody tr.success {
-            background-color: #8cbfee !important;
-        }
-
-        form {
-            display: inline-block;
-        }
-
-    </style>
+    </script>    
+    <script src="/static/js/main.js"></script>
+    <link rel=stylesheet href="{{ url_for('static',filename='css/main.css') }}" />
 </head>
 
 <body>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Please Confirm</h4>
+      </div>
+      <div class="modal-body">
+        <p class=text-danger>Are you sure you want to delete this item?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Delete</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,9 +53,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li {% if page == 'new-task' %} class="active" {% endif %}><a href="/new-task">New TODO<span
+                <li {% if page == 'new-task' %} class="active" {% endif %}><a id="new-task" href="/new-task{% if cat_name %}?cat_name={{ cat_name }}{% endif %}">New TODO<span
                         class="sr-only">(current)</span></a></li>
-                <li><a href="/new-category">New category</a></li>
+                <li><a id="new-category" href="/new-category">New category</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -75,10 +64,10 @@
 </nav>
 
 <div class="container-fluid">
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% for cat,message in messages %}
+                <div class="alert alert-{{ cat }}" role="alert">{{ message }}</div>
             {% endfor %}
         {% endif %}
     {% endwith %}

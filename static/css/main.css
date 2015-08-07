@@ -1,0 +1,61 @@
+  #category-table > tbody > tr:nth-child(2) > td:nth-child(1){
+    border-top:none;
+}
+#rounded {
+    border: 2px solid #7087a1;
+    padding: 10px 20px;
+    background: #d8dcee;
+    border-radius: 10px;
+    max-width: 350px;
+}
+
+ #category-table {
+     max-width: 300px;
+     border: 0px;
+ }
+
+ #category-table tbody tr > td.success {
+     background-color: #8cbfee !important;
+}
+
+#todo-table {
+    max-width: 1000px;
+}
+#todo-table tbody tr.success {
+    background-color: #8cbfee !important;
+}
+
+form {
+}
+
+#rounded {
+    padding:15px 0px 15px 0px;
+    
+}
+.cat-btn {
+    margin:15px 0px 15px 0px; 
+}
+a.btn-link {
+    font-size:1.2em;
+    color:black;
+}
+.last-td {
+    text-align:center;
+}
+.fa {
+    font-size:160%;
+}
+.well-hr {
+    border-top:1px solid black;
+}
+.fa-trash-o.fa-border:hover {
+    background-color: #f2dede;
+}
+.fa-check.fa-border:hover {
+    background-color:#dff0d8;
+}
+.fa-pencil.fa-border:hover {
+    background-color:#337ab7;
+    color:white;
+}
+

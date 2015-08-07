@@ -1,0 +1,6 @@
+{% macro icon(name,lib='glyphicon',size=false) %}
+    <span class="{% if size %}fa-{{ size }}x {% endif %}{{ lib }} {{ lib }}-{{ name }}"></span>
+{% endmacro %}
+{% macro get_priority_label(p) %}
+    <span class="label label-{%- if p == 'high' %}danger{% elif p == 'medium' %}warning{% else %}primary{% endif %}">{{ p }}</span>        
+{% endmacro %}
