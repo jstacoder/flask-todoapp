@@ -1,3 +1,38 @@
+  #category-table > tbody > tr:nth-child(2) > td:nth-child(1){
+    border-top:none;
+}
 #rounded {
-    padding:5px 5px 0px 0px;
+    border: 2px solid #7087a1;
+    padding: 10px 20px;
+    background: #d8dcee;
+    border-radius: 10px;
+    max-width: 350px;
+}
+
+ #category-table {
+     max-width: 300px;
+     border: 0px;
+ }
+
+ #category-table tbody tr > td.success {
+     background-color: #8cbfee !important;
+}
+
+#todo-table {
+    max-width: 1000px;
+}
+#todo-table tbody tr.success {
+    background-color: #8cbfee !important;
+}
+
+form {
+    display: inline-block;
+}
+
+#rounded {
+    padding:15px 15px 0px 0px;
+    
+}
+.cat-btn {
+    margin:15px 0px 15px 0px; 
 }
