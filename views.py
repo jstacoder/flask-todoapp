@@ -71,8 +71,8 @@ def new():
 
 @app.route('/<int:todo_id>', methods=['GET', 'POST'])
 def update_todo(todo_id):
-    form = new_or_update()
     todo = Todo.query.get(todo_id)
+    form = new_or_update(False,obj=todo)
     if request.method == 'GET':
         return render_template(
             'new-task.html',
