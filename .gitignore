@@ -1,4 +1,5 @@
+*.pyc
+venv/*
 pyv*/
 tests/.hitch
 __pycache__
-*.pyc
