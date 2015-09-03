@@ -38,10 +38,10 @@ def list_todos(name):
         cat_name=name
     )
 
-def new_or_update(new=False):
-    form_args = {}
+def new_or_update(new=False,obj=False):
+    form_args = {'priority':Priority.query.filter(Priority.name=='low').first()}
     if not new:
-        form_args = {'priority':Priority.query.filter(Priority.name=='low').first()}
+        form_args.update({'category':obj.category,'priority':obj.todo})
     if 'cat_name' in request.args:
         form_args.update({'category':Category.query.filter(Category.name==request.args['cat_name']).first()})
     return AddTodoForm(**form_args)
