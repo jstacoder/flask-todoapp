@@ -32,6 +32,7 @@ def list_todos(name):
         'list.html',
         todos=Todo.query.filter_by(category=category).join(Priority).order_by(Priority.value.desc()).all(),
         categories=Category.query.all(),
+        cat_name=name
     )
 
 
