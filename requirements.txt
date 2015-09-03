@@ -11,3 +11,4 @@ psycopg2==2.6
 wsgiref==0.1.2
 flask-script
 ipython==4.0.0
+wtforms==2.0.1
