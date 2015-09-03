@@ -140,7 +140,7 @@ def mark_done(todo_id):
         return redirect('/')
 
 @app.route('/un-mark-done/<int:todo_id>', methods=['POST'])
-def mark_done(todo_id):
+def un_mark_done(todo_id):
     if request.method == 'POST':
         todo = Todo.query.get(todo_id)
         todo.is_done = False
