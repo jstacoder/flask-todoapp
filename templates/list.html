@@ -53,9 +53,9 @@
                         <td>{{ todo.priority.name }}</td>
                         <td>{{ todo.creation_date }}</td>
                         <td>
-                            <a class="btn btn-xs btn-default{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }} Edit</a>
+                            <div class=btn-group>
                             <form id="delform-{{ todo.id }}" action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="post">
-                                {#<input class="btn btn-xs btn-danger" type="submit" name="delete_todo" value="Delete">#}
+                            <a class="btn btn-xs btn-default{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }} Edit</a>
                                 <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-xs btn-danger" id="delete_todo" href="#">{{ icon('trash') }} Delete</a>
                             </form>
                             {% if not todo.is_done %}
@@ -67,6 +67,7 @@
                                     <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="undo">{{ icon('check') }} Reopen</a>
                                 </form>
                             {% endif %}
+                            </div>
                         </td>
                     </tr>
                 {%- endfor %}
