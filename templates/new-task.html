@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class=row>
-        <div class=col-md-12>
+        <div class="col-md-offset-3 col-md-7">
             <form action="" method=post>
                 <fieldset>
                     <legend>{%- if todo is defined %} Edit {% else %} Create new {% endif -%}Todo</legend>
-                    <div class="form-group">
+                        <div class=row>
+                            <div class="form-group col-md-6">
                     <!--{#
                     <select class="selectpicker" name="category" required>
                         {% for category in categories %}
@@ -13,11 +14,9 @@
                         {% endfor %}
                     </select>
                     #}-->
-                   {{ form.category(class_='form-control selectpicker') }}
-                    </div>
-                </fieldset>
-                <fieldset>                   
-                    <div class="form-group">     
+                           {{ form.category(class_='form-control selectpicker') }}
+                            </div>
+                            <div class="form-group col-md-6">     
                     <!--{#
                     <select class="selectpicker" name="priority" required>
                         {% for priority in priorities %}
@@ -26,7 +25,8 @@
                     </select>
                    #}-->
                         {{ form.priority(class_='selectpicker form-control') }}
-                    </div>
+                            </div>
+                        </div>
                 </fieldset> 
                 <fieldset>       
                     <div class="form-group">              
