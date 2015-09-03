@@ -43,7 +43,9 @@
                     <th>Category</th>
                     <th>Priority</th>
                     <th>Creation date</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Complete/undo</th>
                 </tr>
                 {%- for todo in todos %}
                     <tr {% if todo.is_done %}class="success"{% endif %}>
@@ -52,15 +54,15 @@
                         <td>{{ todo.category.name }}</td>
                         <td>{{ todo.priority.name }}</td>
                         <td>{{ todo.creation_date }}</td>
-                        <td>
+                        <td colspan=3>
                             <div class=btn-group>
                             <form id="delform-{{ todo.id }}" action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="post">
-                            <a class="btn btn-xs btn-default{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }} Edit</a>
-                                <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-xs btn-danger" id="delete_todo" href="#">{{ icon('trash') }} Delete</a>
+                            <a class="btn btn-link{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }}</a>
+                            <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-link text-danger" id="delete_todo" href="#">{{ icon('trash') }}</a>
                             {% if not todo.is_done %}
-                                    <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="mark_done">{{ icon('check') }} Done</a>
+                                    <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-link" id="mark_done">{{ icon('check') }}</a>
                             {% else %}
-                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-xs btn-warning" id="undo">{{ icon('check') }} Reopen</a>
+                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-link text-warning" id="undo">{{ icon('check') }}</a>
                             {% endif %}
                             </form>
                             {% if not todo.is_done %}
