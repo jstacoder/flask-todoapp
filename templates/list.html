@@ -54,7 +54,7 @@
                         <td>{{ todo.category.name }}</td>
                         <td>{{ todo.priority.name }}</td>
                         <td>{{ todo.creation_date }}</td>
-                        <td rowspan=3>
+                        <td colspan=3>
                             <form id="delform-{{ todo.id }}" action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="post">
                             <a class="btn btn-link{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }}</a>
                             <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-link text-danger" id="delete_todo" href="#">{{ icon('trash') }}</a>
