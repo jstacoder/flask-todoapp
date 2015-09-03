@@ -24,7 +24,7 @@
                              </div>
                              <div class=col-md-4>
                                 <form id="catdel-{{ category.name }}" action="{{ url_for('delete_category', category_id=category.id) }}" method="post">
-                                <a class="btn btn-sm btn-danger" onclick="$('#catdel-{{ category.name }}').submit();">{{ icon('trash') }} Delete</a>
+                                <a class="btn btn-sm btn-danger cat-btn" onclick="$('#catdel-{{ category.name }}').submit();">{{ icon('trash') }} Delete</a>
                                 </form>
                              </div>
                         </div>                    
