@@ -38,13 +38,18 @@ def list_todos(name):
         cat_name=name
     )
 
+def new_or_update(new=False):
+    form_args = {}
+    if not new:
+        form_args = {'priority':Priority.query.filter(Priority.name=='low').first()}
+    if 'cat_name' in request.args:
+        form_args.update({'category':Category.query.filter(Category.name==request.args['cat_name']).first()})
+    return AddTodoForm(**form_args)
+    
 
 @app.route('/new-task', methods=['GET', 'POST'])
 def new():
-    form_args = {'priority':Priority.query.filter(Priority.name=='low').first()}
-    if 'cat_name' in request.args:
-        form_args.update({'category':Category.query.filter(Category.name==request.args['cat_name']).first()})
-    form = AddTodoForm(**form_args)
+    form = new_or_update(true)
     if request.method == 'POST':
         category = Category.query.filter_by(id=request.form['category']).first()
         priority = Priority.query.filter_by(id=request.form['priority']).first()
@@ -66,13 +71,15 @@ def new():
 
 @app.route('/<int:todo_id>', methods=['GET', 'POST'])
 def update_todo(todo_id):
+    form = new_or_update()
     todo = Todo.query.get(todo_id)
     if request.method == 'GET':
         return render_template(
             'new-task.html',
             todo=todo,
             categories=Category.query.all(),
-            priorities=Priority.query.all()
+            priorities=Priority.query.all(),
+            form=form
         )
     else:
         category = Category.query.filter_by(id=request.form['category']).first()
