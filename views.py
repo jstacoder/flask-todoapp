@@ -41,7 +41,7 @@ def list_todos(name):
 def new_or_update(new=False,obj=False):
     form_args = {'priority':Priority.query.filter(Priority.name=='low').first()}
     if not new:
-        form_args.update({'category':obj.category,'priority':obj.todo})
+        form_args.update({'category':obj.category,'priority':obj.priority,'description':obj.description})
     if 'cat_name' in request.args:
         form_args.update({'category':Category.query.filter(Category.name==request.args['cat_name']).first()})
     return AddTodoForm(**form_args)
