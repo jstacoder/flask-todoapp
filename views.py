@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, flash
+from flask import render_template, request, redirect, flash,url_for
 from models import Category, Todo, Priority, db
 from todoapp import app
 
@@ -8,7 +8,7 @@ def list_all():
     return render_template(
         'list.html',
         categories=Category.query.all(),
-        todos=Todo.query.join(Priority).order_by(Priority.value.desc())
+        todos=Todo.query.all(),#join(Priority).order_by(Priority.value.desc())
     )
 
 
@@ -17,7 +17,7 @@ def list_todos(name):
     category = Category.query.filter_by(name=name).first()
     return render_template(
         'list.html',
-        todos=Todo.query.filter_by(category=category).join(Priority).order_by(Priority.value.desc()),
+        todos=Todo.query.filter_by(category=category).all(),# .join(Priority).order_by(Priority.value.desc()),
         categories=Category.query.all(),
 
     )
@@ -31,7 +31,7 @@ def new():
         todo = Todo(category=category, priority=priority, description=request.form['description'])
         db.session.add(todo)
         db.session.commit()
-        return redirect('/')
+        return redirect(url_for('list_all'))
     else:
         return render_template(
             'new-task.html',
