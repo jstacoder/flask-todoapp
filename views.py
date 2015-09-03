@@ -4,17 +4,15 @@ from todoapp import app
 from wtforms import Form,fields
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
+cat_query = Category.query
+p_query = Priority.query
 
 class AddTodoForm(Form):
     description = fields.StringField('description')
-    category = QuerySelectField('category')
-    priority = QuerySelectField('priority')
+    category = QuerySelectField('category',query=cat_query)
+    priority = QuerySelectField('priority',query=p_query)
     submit = fields.SubmitField('Create Todo')
-    
 
-
-AddTodoForm.category.query_factory = lambda: Category.query.all()
-AddTodoForm.priority.query_factory = lambda: Priority.query.all()
 
 @app.route('/')
 def list_all():
