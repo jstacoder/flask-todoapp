@@ -15,6 +15,9 @@ class AddTodoForm(Form):
     submit = fields.SubmitField('Create Todo')
 
 
+@app.template_global('form')
+def _form():
+    return AddTodoForm
 
 @app.route('/')
 def list_all():
