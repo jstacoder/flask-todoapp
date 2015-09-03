@@ -139,3 +139,12 @@ def mark_done(todo_id):
         db.session.commit()
         return redirect('/')
 
+@app.route('/un-mark-done/<int:todo_id>', methods=['POST'])
+def mark_done(todo_id):
+    if request.method == 'POST':
+        todo = Todo.query.get(todo_id)
+        todo.is_done = False
+        db.session.add(todo)
+        db.session.commit()
+        return redirect('/')
+
