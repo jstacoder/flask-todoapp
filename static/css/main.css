@@ -35,8 +35,9 @@ form {
 .cat-btn {
     margin:15px 0px 15px 0px; 
 }
-.btn-link {
-    font-size:1.4em;
+a.btn-link {
+    font-size:1.2em;
+    color:black;
 }
 .last-td {
     text-align:center;
