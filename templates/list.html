@@ -65,7 +65,7 @@
                             <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-link text-danger" id="delete_todo" href="#">{{ icon('trash-o','fa',2) }}</a>
                               </form>
                         </td>
-                        <td>
+                        <td class="last-td">
                             {% if not todo.is_done %}
                                 <form id="isdone-{{ todo.id }}" action="{{ url_for('mark_done', todo_id=todo.id) }}" method="post">
                                     <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-link" id="mark_done">{{ icon('check','fa',2) }}</a>
