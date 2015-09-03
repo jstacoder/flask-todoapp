@@ -49,7 +49,7 @@ def new_or_update(new=False,obj=False):
 
 @app.route('/new-task', methods=['GET', 'POST'])
 def new():
-    form = new_or_update(true)
+    form = new_or_update(True)
     if request.method == 'POST':
         category = Category.query.filter_by(id=request.form['category']).first()
         priority = Priority.query.filter_by(id=request.form['priority']).first()
