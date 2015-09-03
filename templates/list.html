@@ -58,21 +58,21 @@
                         <td>{{ todo.priority.name }}</td>
                         <td>{{ todo.creation_date }}</td>
                         <td>
-                            <a class="btn btn-link{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }}</a>
+                            <a class="btn btn-link{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit','fa',2) }}</a>
                         </td>
                         <td>
                            <form id="delform-{{ todo.id }}" action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="post">
-                            <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-link text-danger" id="delete_todo" href="#">{{ icon('trash') }}</a>
+                            <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-link text-danger" id="delete_todo" href="#">{{ icon('trash-o','fa',2) }}</a>
                               </form>
                         </td>
                         <td>
                             {% if not todo.is_done %}
                                 <form id="isdone-{{ todo.id }}" action="{{ url_for('mark_done', todo_id=todo.id) }}" method="post">
-                                    <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-link" id="mark_done">{{ icon('check') }}</a>
+                                    <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-link" id="mark_done">{{ icon('check','fa',2) }}</a>
                                 </form>
                             {% else %}
                                 <form id="undone-{{ todo.id }}" action="{{ url_for('un_mark_done', todo_id=todo.id) }}" method="post">
-                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-link text-warning" id="undo">{{ icon('check') }}</a>
+                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-link text-warning" id="undo">{{ icon('undo','fa',2) }}</a>
                                 </form>
                             {% endif %}
                         </td>
