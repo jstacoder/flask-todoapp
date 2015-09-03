@@ -57,14 +57,17 @@
                             <form id="delform-{{ todo.id }}" action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="post">
                             <a class="btn btn-xs btn-default{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }} Edit</a>
                                 <a onclick="$('#delform-{{ todo.id }}').submit();" class="btn btn-xs btn-danger" id="delete_todo" href="#">{{ icon('trash') }} Delete</a>
+                            {% if not todo.is_done %}
+                                    <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="mark_done">{{ icon('check') }} Done</a>
+                            {% else %}
+                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="undo">{{ icon('check') }} Reopen</a>
+                            {% endif %}
                             </form>
                             {% if not todo.is_done %}
                                 <form id="isdone-{{ todo.id }}" action="{{ url_for('mark_done', todo_id=todo.id) }}" method="post">
-                                    <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="mark_done">{{ icon('check') }} Done</a>
                                 </form>
                             {% else %}
                                 <form id="undone-{{ todo.id }}" action="{{ url_for('un_mark_done', todo_id=todo.id) }}" method="post">
-                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="undo">{{ icon('check') }} Reopen</a>
                                 </form>
                             {% endif %}
                             </div>
