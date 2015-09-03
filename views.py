@@ -6,11 +6,12 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 cqf = lambda: Category.query.all()
 pqf = lambda: Priority.query.all()
+get_label = lambda x: x.name
 
 class AddTodoForm(Form):
     description = fields.StringField('description')
-    category = QuerySelectField('category',query_factory=cqf)
-    priority = QuerySelectField('priority',query_factory=pqf)
+    category = QuerySelectField('category',query_factory=cqf,get_label=get_label)
+    priority = QuerySelectField('priority',query_factory=pqf,get_label=get_label)
     submit = fields.SubmitField('Create Todo')
 
 
