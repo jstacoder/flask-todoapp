@@ -29,7 +29,6 @@ def new():
         category = Category.query.filter_by(id=request.form['category']).first()
         priority = Priority.query.filter_by(id=request.form['priority']).first()
         todo = Todo(category=category, priority=priority, description=request.form['description'])
-        todo = Todo(category=category, description=request.form['description'])
         db.session.add(todo)
         db.session.commit()
         return redirect(url_for('list_all'))
