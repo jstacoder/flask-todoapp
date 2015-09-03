@@ -46,11 +46,11 @@
                         <td>
                             <a class="btn btn-xs btn-default{% if todo.is_done %} disabled{% endif %}"  href="{{ url_for('update_todo', todo_id=todo.id) }}" >{{ icon('edit') }} Edit</a>
                             <form id=delform action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="post">
-                                <input class="btn btn-xs btn-danger" type="submit" name="delete_todo" value="Delete">
+                                {#<input class="btn btn-xs btn-danger" type="submit" name="delete_todo" value="Delete">#}
                                 <a onclick="$('#delform').submit();" class="btn btn-xs btn-danger" id="delete_todo" href="#">{{ icon('trash') }} Delete</a>
                             </form>
                             <form id=isdone action="{{ url_for('mark_done', todo_id=todo.id) }}" method="post">
-                                <input class="btn btn-xs btn-default" type="submit" name="mark_done" value="Done"{% if todo.is_done %} disabled{% endif %}>
+                                {#<input class="btn btn-xs btn-default" type="submit" name="mark_done" value="Done"{% if todo.is_done %} disabled{% endif %}>#}
                                 <a onclick="$('#isdone').submit()" class="btn btn-xs btn-default" id="mark_done"{% if todo.is_done %} disabled{% endif %}>{{ icon('check') }} Done</a>
                             </form>
                         </td>
