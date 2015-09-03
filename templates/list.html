@@ -60,7 +60,7 @@
                             {% if not todo.is_done %}
                                     <a onclick="$('#isdone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="mark_done">{{ icon('check') }} Done</a>
                             {% else %}
-                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-xs btn-default" id="undo">{{ icon('check') }} Reopen</a>
+                                    <a onclick="$('#undone-{{ todo.id }}').submit()" class="btn btn-xs btn-warning" id="undo">{{ icon('check') }} Reopen</a>
                             {% endif %}
                             </form>
                             {% if not todo.is_done %}
