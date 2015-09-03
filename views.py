@@ -2,6 +2,17 @@ from flask import render_template, request, redirect, flash,url_for
 from models import Category, Todo, Priority, db
 from forms import AddTodoForm
 from todoapp import app
+from wtforms import Form,fields
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+
+
+class AddTodoForm(Form):
+    description = fields.StringField('description')
+    category = QuerySelectField('category')
+    priority = QuerySelectField('priority')
+    submit = fields.SubmitField('Create Todo')
+    
+
 
 AddTodoForm.category.query_factory = lambda: Category.query.all()
 AddTodoForm.priority.query_factory = lambda: Priority.query.all()
@@ -124,3 +135,4 @@ def mark_done(todo_id):
         todo.is_done = True
         db.session.commit()
         return redirect('/')
+
