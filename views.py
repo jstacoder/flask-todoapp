@@ -1,7 +1,10 @@
 from flask import render_template, request, redirect, flash,url_for
 from models import Category, Todo, Priority, db
+from forms import AddTodoForm
 from todoapp import app
 
+AddTodoForm.category.query_factory = lambda: Category.query.all()
+AddTodoForm.priority.query_factory = lambda: Priority.query.all()
 
 @app.route('/')
 def list_all():
@@ -24,6 +27,7 @@ def list_todos(name):
 
 @app.route('/new-task', methods=['GET', 'POST'])
 def new():
+    form = AddTodoForm()
     if request.method == 'POST':
         category = Category.query.filter_by(id=request.form['category']).first()
         priority = Priority.query.filter_by(id=request.form['priority']).first()
@@ -38,7 +42,8 @@ def new():
             cat_name=(('cat_name' in request.args) and request.args['cat_name']),
             page='new-task',
             categories=Category.query.all(),
-            priorities=Priority.query.all()
+            priorities=Priority.query.all(),
+            form=form
         )
 
 

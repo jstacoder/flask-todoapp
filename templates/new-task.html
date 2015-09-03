@@ -5,26 +5,33 @@
         <div class="control-group">
             <div class="control-group" >
                 <div class="controls">
+                    <!--{#
                     <select class="selectpicker" name="category" required>
                         {% for category in categories %}
                             <option value="{{ category.id }}" {%if todo is defined %}{% if todo.category_id == category.id %} selected {% endif %}{% endif %}>{{ category.name }}</option>
                         {% endfor %}
                     </select>
+                    #}-->
+                    {{ form.category(class_='selectpicker') }}
                 </div>
             </div>
             <hr>
             <div class="control-group">
                 <div class="controls">
+                    <!--{#
                     <select class="selectpicker" name="priority" required>
                         {% for priority in priorities %}
                                 <option value="{{ priority.id }}" {% if todo is defined %}{% if todo.priority_id == priority.id %} selected {% endif %}{% endif %}>{{ priority.name }}</option>
                         {% endfor %}
                     </select>
+                   #}-->
+                    {{ form.priority(class_='selectpicker') }}
                 </div>
             </div>
             <hr>
             <div class="control-group">
                 <div class="controls">
+                    <!--{#
                     <input 
                         type="text" 
                         id="description" 
@@ -37,6 +44,8 @@
                         {% endif -%}
                         required
                       />
+                    #}-->
+                    {{ form.description(class_='form-control',placeholder='category') }}
                 </div>
             </div>
         </div>
