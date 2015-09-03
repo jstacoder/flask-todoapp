@@ -27,8 +27,8 @@ def list_todos(name):
 def new():
     if request.method == 'POST':
         category = Category.query.filter_by(id=request.form['category']).first()
-        #priority = Priority.query.filter_by(id=request.form['priority']).first()
-        #todo = Todo(category=category, priority=priority, description=request.form['description'])
+        priority = Priority.query.filter_by(id=request.form['priority']).first()
+        todo = Todo(category=category, priority=priority, description=request.form['description'])
         todo = Todo(category=category, description=request.form['description'])
         db.session.add(todo)
         db.session.commit()
@@ -38,7 +38,7 @@ def new():
             'new-task.html',
             page='new-task',
             categories=Category.query.all(),
-            #priorities=Priority.query.all()
+            priorities=Priority.query.all()
         )
 
 
@@ -50,14 +50,14 @@ def update_todo(todo_id):
             'new-task.html',
             todo=todo,
             categories=Category.query.all(),
-            #priorities=Priority.query.all()
+            priorities=Priority.query.all()
         )
     else:
         category = Category.query.filter_by(id=request.form['category']).first()
-        #priority = Priority.query.filter_by(id=request.form['priority']).first()
+        priority = Priority.query.filter_by(id=request.form['priority']).first()
         description = request.form['description']
         todo.category = category
-        #todo.priority = priority
+        todo.priority = priority
         todo.description = description
         db.session.commit()
         return redirect('/')
