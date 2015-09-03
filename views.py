@@ -40,7 +40,7 @@ def list_todos(name):
 def new():
     form_args = {'priority':Priority.query.filter(Priority.name=='low').first()}
     if 'cat_name' in request.args:
-        form_args = form_args.update({'category':Category.query.filter(Category.name==request.args['cat_name']).first()})
+        form_args.update({'category':Category.query.filter(Category.name==request.args['cat_name']).first()})
     form = AddTodoForm(**form_args)
     if request.method == 'POST':
         category = Category.query.filter_by(id=request.form['category']).first()
